@@ -121,10 +121,10 @@ export default function BookingPage() {
       </Box>
 
       <CreateBookingDialog
-        open={open}
-        onClose={() => setOpen(false)}
-        onSuccess={loadBookings}
-      />
+  open={open}
+  onClose={() => setOpen(false)}
+  onSuccess={loadBookings}
+/>
     </DashboardLayout>
   );
 }
