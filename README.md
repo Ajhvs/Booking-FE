@@ -1,73 +1,110 @@
-# React + TypeScript + Vite
+# Booking Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **React + TypeScript** admin dashboard to manage bookings efficiently, with a Material UI frontend and client-side form validation.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## **Tech Stack**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend:** React + TypeScript
+* **UI Library:** [Material UI (MUI)](https://mui.com/)
 
-## Expanding the ESLint configuration
+  * Components: `DataGrid`, `Dialog`, `Button`, `Chip`, `Typography`, `Paper`
+* **State Management:** React `useState` and `useEffect`
+* **API Integration:** Axios or fetch (`fetchBookings` & `createBooking`)
+* **Styling:** MUI `sx` prop for inline CSS + theme-aware design
+* **Form Validation:** Custom TypeScript validation utility (`bookingValidation.ts`)
+* **Icons:** Material UI Icons (`AddIcon`)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## **Project Structure**
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├─ api/
+│   └─ bookingApi.ts        # API calls to fetch and create bookings
+├─ components/
+│   └─ CreateBookingDialog.tsx  # Booking form dialog with validation
+├─ layout/
+│   └─ DashboardLayout.tsx  # Layout with AppBar, Drawer, and main content
+├─ pages/
+│   └─ BookingPage.tsx      # Main bookings management page with DataGrid
+├─ types/
+│   └─ booking.ts           # TypeScript types for Booking and BookingForm
+├─ utils/
+│   └─ bookingValidation.ts # Booking form validation logic
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## **Features**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. **Booking Management Table**
+
+   * View all bookings in a DataGrid table
+   * Hover effects and styled headers
+   * Status displayed as colored chips (`Booked`, `Cancelled`, `Pending`)
+
+2. **Create Booking Dialog**
+
+   * Form fields: Name, Phone, Date, Time, Service, Status
+   * Validation rules:
+
+     * Name: min 2 characters
+     * Phone: must start with `91` + 10 digits
+     * Time: numbers only (`HHMM` or `HH:MM`)
+     * Service: letters only
+   * Errors display under the respective input field
+
+3. **Responsive Layout**
+
+   * Persistent drawer sidebar for navigation
+   * AppBar header with page title
+   * Main content scrollable
+
+---
+
+## **Installation & Running**
+
+1. **Clone the repository**
+
+```bash
+git clone <repo-url>
+cd booking-dashboard
 ```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Start the development server**
+
+```bash
+npm run dev
+# or
+npm start
+```
+
+4. **Open in browser**
+
+```
+http://localhost:3000
+```
+
+---
+
+## **Usage**
+
+* Click **Add Booking** to open the booking form dialog.
+* Fill out all fields according to validation rules.
+* Click **Save** to submit; the booking is added to the table.
+* Errors will display in real-time or on submit if validation fails.
+
+
+
+If you want, I can also create a **shorter one-page version with badges and screenshots** so it looks professional for GitHub.
+
+Do you want me to do that?
